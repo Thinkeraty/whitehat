@@ -99,12 +99,14 @@ pipeGroundGroup = new Group();
       }
       
        //Killing mario
-       if(mario.isTouching(pipeGroup)) {
-        mario.visible = false;
-        gameState = END;
-        //playSound( "sound://category_explosion/8bit_explosion.mp3");
-      
-      }
+       if(mario.x-pipeGroup.x<mario.width/2+pipeGroup.width/2 
+        && pipeGroup.x-mario.x<mario.width/2+pipeGroup.width/2
+        && mario.y-pipeGroup.y< mario.height/2+pipeGroup.height/2
+        && pipeGroup.y-mario.y< mario.height/2+pipeGroup.height/2)
+        {
+          mario.visible = false;
+          gameState = END;
+       }
 
       //Scoring System
       if(mario.isTouching(coinGroup)) {

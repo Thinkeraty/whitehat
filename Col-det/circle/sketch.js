@@ -11,17 +11,16 @@ function setup() {
   fixedCirc = createSprite(600, 140, 50, 80);
   fixedCirc.shapeColor = "red";
   
-  //fixedCirc.debug = true;
+  fixedCirc.debug = true;
   fixedCirc.setCollider("circle", 0, 0, 60);
-  fixedCirc.radius = 40;
-
+   fixedCirc.radius = 60;
 
   movingCirc = createSprite(400, 400, 50, 80);
   movingCirc.shapeColor = "red";
 
-  //movingCirc.debug = true;
+  movingCirc.debug = true;
   movingCirc.setCollider("circle", 0, 0, 60);
-  movingCirc.radius = 40;
+  movingCirc.radius = 60;
 
   
 }
@@ -34,6 +33,7 @@ function draw() {
 
   distX = fixedCirc.x - movingCirc.x;
   distY = fixedCirc.y - movingCirc.y;
+  
   distance = Math.sqrt(distX * distX + distY * distY);
 
   collision(fixedCirc, movingCirc);
@@ -41,6 +41,9 @@ function draw() {
 
   drawSprites();
 
+  textSize(25);
+  text("Status: ", 380, 500);
+  
   textSize(30);
   text("Circular Collision Detection By Samyak", 370, 550);
 }

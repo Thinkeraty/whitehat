@@ -3,25 +3,26 @@
 var backGround, backGround_img, ground;
 var mario_stop, mario_running; 
 var score; 
-var gameState = PLAY;
+var gameState;
 var pipeGroup, coinGroup;
 var coin_img, pipe_img;
 var pipeGroundGroup;
+var pipeSpriteGroup;
 var restart, restart_img;
 var END = 0;
 var PLAY = 1;
 
 function preload() {
-    mario_running = loadAnimation('marioRun1.png', 'marioRun2.png', 'marioRun3.png');
-    mario_stop = loadAnimation("mario.png");
+    mario_running = loadAnimation('https://thinkeraty.github.io/whitehat/mario/marioRun1.png', 'https://thinkeraty.github.io/whitehat/mario/marioRun2.png', 'https://thinkeraty.github.io/whitehat/mario/marioRun3.png');
+    mario_stop = loadAnimation("https://thinkeraty.github.io/whitehat/mario/mario.png");
 
-    backGround_img = loadImage("mariobg.jpg");
+    backGround_img = loadImage("https://thinkeraty.github.io/whitehat/mario/mariobg.jpg");
 
-    coin_img = loadImage("coin.png");
+    coin_img = loadImage("https://thinkeraty.github.io/whitehat/mario/coin.png");
 
-    pipe_img = loadImage("pipe.png");
+    pipe_img = loadImage("https://thinkeraty.github.io/whitehat/mario/pipe.png");
 
-    restart_img = loadImage("restart.png");
+    restart_img = loadImage("https://thinkeraty.github.io/whitehat/mario/restart.png");
 
 }
 
@@ -41,7 +42,7 @@ mario.addAnimation("running", mario_running);
 mario.scale = 0.55;
 mario.setCollider("circle", 0, 0, 40);
 
-restart = createSprite(180, 180, 60, 40);
+restart = createSprite(200, 180, 60, 40);
 restart.addImage("restart", restart_img);
 
 restart.scale = 0.05;
@@ -49,10 +50,21 @@ restart.scale = 0.05;
 //Creating Score
 score = 0;
 
+//Creating GameStates
+PLAY = 1;
+END = 0;
+
+gameState = PLAY;
+
+//Creating End Sprites
+end = createSprite(200, 180, 40, 60);
+end.visible = false;
+
 //Creating Groups
 pipeGroup = new Group();
 coinGroup = new Group();
 pipeGroundGroup = new Group();
+pipeSpriteGroup = new Group();
 }
 
   function draw() {
@@ -86,7 +98,7 @@ pipeGroundGroup = new Group();
       if(keyDown("UP_ARROW") && mario.y > 303) {
         mario.velocityY = -15;
         mario.x = 60;
-        //playSound( "sound://category_jump/arcade_game_jump_1.mp3");
+        //playSound( "https://studio.code.org/sound://category_jump/arcade_game_jump_1.mp3");
       }
       
       //Gravity
@@ -99,27 +111,25 @@ pipeGroundGroup = new Group();
       }
       
        //Killing mario
-       if(mario.x-pipeGroup.x<mario.width/2+pipeGroup.width/2 
-        && pipeGroup.x-mario.x<mario.width/2+pipeGroup.width/2
-        && mario.y-pipeGroup.y< mario.height/2+pipeGroup.height/2
-        && pipeGroup.y-mario.y< mario.height/2+pipeGroup.height/2)
-        {
-          mario.visible = false;
-          gameState = END;
-       }
+       if(mario.isTouching(pipeSpriteGroup)) {
+        mario.visible = false;
+        gameState = END;
+        
+      
+      }
 
       //Scoring System
       if(mario.isTouching(coinGroup)) {
         coinGroup.destroyEach();
         score = score + 10;
-        //playSound("sound://category_points/vibrant_affirm_or_open.mp3");
+        
       }
       
       //Making mario stand on the pipe
       if(mario.isTouching(pipeGroundGroup)) {
         mario.collide(pipeGroundGroup);
         mario.velocityX = 0;
-        //playSound( "sound://category_jump/arcade_game_jump_15.mp3");
+       
       }
       else if(mario.isTouching(ground)) {
         mario.collide(ground);
@@ -131,13 +141,14 @@ pipeGroundGroup = new Group();
        pipeGroundSpawn();
        coinSpawn();
        pipeSpawn();
+       pipeSpriteSpawn();
       
       
      
       
       if(mario.x > 400 || mario.x < 0) {
         gameState = END;
-         //playSound( "sound://category_explosion/8bit_explosion.mp3");
+   
       }
       }
       
@@ -207,6 +218,8 @@ pipeGroundGroup = new Group();
     
     mario.depth = mario.depth + 1;
 
+    //pipe.debug = true;
+
     pipeGroup.add(pipe);
     
     pipe.lifetime = 135;
@@ -245,4 +258,21 @@ pipeGroundGroup = new Group();
     
     coin.lifetime = 135;
     }
+  }
+
+  function pipeSpriteSpawn() {
+    if(World.frameCount % 300 === 0) {
+    var pipeSprite = createSprite(400, 345, 30, 60);
+    pipeSprite.velocityX = -3;
+    pipeSprite.visible = false;
+    
+    pipeSprite.depth = mario.depth;
+    
+    mario.depth = mario.depth + 1;
+    
+    
+    pipeSprite.lifetime = 135;
+    
+    pipeSpriteGroup.add(pipeSprite);
+  }
   }

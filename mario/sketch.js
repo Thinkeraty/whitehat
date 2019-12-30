@@ -13,16 +13,16 @@ var END = 0;
 var PLAY = 1;
 
 function preload() {
-    mario_running = loadAnimation('https://thinkeraty.github.io/whitehat/mario/marioRun1.png', 'https://thinkeraty.github.io/whitehat/mario/marioRun2.png', 'https://thinkeraty.github.io/whitehat/mario/marioRun3.png');
-    mario_stop = loadAnimation("https://thinkeraty.github.io/whitehat/mario/mario.png");
+    mario_running = loadAnimation('marioRun1.png', 'marioRun2.png', 'marioRun3.png');
+    mario_stop = loadAnimation("mario.png");
 
-    backGround_img = loadImage("https://thinkeraty.github.io/whitehat/mario/mariobg.jpg");
+    backGround_img = loadImage("mariobg.jpg");
 
-    coin_img = loadImage("https://thinkeraty.github.io/whitehat/mario/coin.png");
+    coin_img = loadImage("coin.png");
 
-    pipe_img = loadImage("https://thinkeraty.github.io/whitehat/mario/pipe.png");
+    pipe_img = loadImage("pipe.png");
 
-    restart_img = loadImage("https://thinkeraty.github.io/whitehat/mario/restart.png");
+    restart_img = loadImage("restart.png");
 
 }
 

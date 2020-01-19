@@ -1,3 +1,4 @@
+//Coded By Samyak Jain With <3 For Whitehat Jr.
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -101,18 +102,8 @@ function keyPressed(){
 }
 
 async function getBackgroundImg(){
-    var response = await fetch("https://worldtimeapi.org/api/timezone/Asia/Kolkata");
-    var responseJSON = await response.json();
-
-    var datetime = responseJSON.datetime;
-    var hour = datetime.slice(11,13);
     
-    if(hour>=0600 && hour<=1900){
-        bg = "sprites/bg.png";
-    }
-    else{
-        bg = "sprites/bg.png";
-    }
+    bg = "sprites/bg.png";
 
     backgroundImg = loadImage(bg);
     console.log(backgroundImg);

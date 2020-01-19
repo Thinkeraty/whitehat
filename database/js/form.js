@@ -30,8 +30,8 @@ class Form {
 
             player.updateCount(playerCount);
 
-            greeting.html("Ready To Play" + name + "?");
-            greeting.position(150, 160);
+            greeting.html("Ready To Play " + name + " ?");
+            greeting.position(490, 50);
         })
         };
     }

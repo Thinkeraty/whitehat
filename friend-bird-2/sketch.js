@@ -10,7 +10,7 @@ var backgroundImg,platform;
 var bird, slingshot;
 
 var gameState = "onSling";
-var bg = "sprites/bg.png";
+var bg = "sprites/bg.jpg";
 var score = 0;
 
 function preload() {
@@ -103,7 +103,7 @@ function keyPressed(){
 
 async function getBackgroundImg(){
     
-    bg = "sprites/bg.png";
+    bg = "sprites/bg.jpg";
 
     backgroundImg = loadImage(bg);
     console.log(backgroundImg);

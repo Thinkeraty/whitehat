@@ -1,70 +1,95 @@
-//var thickness;
-//var thickness_img_plus, thickness_img_minus;
-var color;
-var x;
-var y;
-var fullCleaner;
-var history = [];
-var bg;
+var database
+var drawing=[];
+var currentPath = [];
+var isDrawing = false;
+var path
+var saveButton
 
-
-function preload() {
-
-  //thickness_img_plus = loadImage("./images/plus.png");
-  //thickness_img_minus = loadImage("./images/minus.png");
-
-  fullCleaner = loadImage("./images/full_clean.png");
-
-
-}
 
 function setup() {
-  createCanvas(800,400);
+  canvas=createCanvas(400,400);
+  canvas.mousePressed(startPath);
+  canvas.parent('canvascontainer');
+ canvas.mouseReleased(endPath);
+ saveButton = select('#saveButton')
+ saveButton.mousePressed(saveDrawing)
+ clearButton = select('#clearButton')
+ clearButton.mousePressed(clearDrawing)
+ 
+ database = firebase.database(); 
+ input = createInput('Name');
+ button = createButton("Let's Paint!");
 
-  //thickness = 2;
-
-  color = color(random(255), random(255), random(255));
 }
 
+function startPath(){
+  isDrawing = true
+  currentPath = [];
+  drawing.push(currentPath);
+}
+function endPath(){
+  isDrawing = false
+  
+
+}
 function draw() {
-  background(255);  
-
-
-  image(fullCleaner, 0, 100, 78.5, 28.5);
-
-  /*fill("#000000");
+  background("black"); 
+  fill("white");
   textSize(18);
-  text("Thickness: "+thickness, 5, 175);
-  image(thickness_img_minus, 5, 180, 12.5, 12.5);
-  image(thickness_img_plus, 100, 180, 12.5, 12.5);*/
+  text("Paint App By Samyak", 100, 50)
+  input.position(100,200);
+  button.position(140,300);
+  button.mousePressed(()=>{
+  input.hide();
+  button.hide();
+   
 
-  if(mouseX > 0 && mouseX < 78.5 && mouseY > 100 && mouseY < 125) {
-    if(mouseIsPressed === true) {
-      fill("#ffffff");
-      rectMode(CENTER);
-      rect(520, 200, 680, 400);
-    }
 
+  });
+  
+  if(isDrawing){
+  var point = {
+    x : mouseX,
+    y : mouseY
   }
 
-  /*if(mouseX > 100 && mouseX < 112.5 && mouseY > 180 && mouseY < 192.5) {
-    if(mouseIsPressed == true) {
-      thickness = thickness+1;
-        text("Thickness: "+thickness, 5, 175);
-      console.log("hi");
-    } 
-  }*/
-  drawOnCanavs();
+    currentPath.push(point)
+
+  }
+ 
+  stroke("white")
+  strokeWeight(4);
+  noFill();
+  for(var i = 0; i < drawing.length; i++){
+    path = drawing[i];
+    beginShape();
+  
+  for(var j = 0; j< path.length; j++){
+    vertex(path[j].x,path[j].y)
+  }
+  endShape();
+
+}
 }
 
-function drawOnCanavs() {
-  noStroke();
+function saveDrawing(){
+  var ref = database.ref('/paint-app/drawings');
+  var data = {
+    name : input.value(),
+    drawing: drawing
+  }
 
-  if (mouseX > 110) {
-    if (mouseIsPressed == true) {
-      //if we are on the right side of page, let us draw
-      fill(color);
-      ellipse(mouseX, mouseY, 10, 10);
-    }
+  var result = ref.push(data,dataSent);
+  console.log(result.key)
+ref.push(data,dataSent);
+function dataSent( err,status){
+  console.log(status);
 }
+
+
 }
+
+function clearDrawing(){
+  drawing = [];
+}
+

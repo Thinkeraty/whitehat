@@ -82,8 +82,10 @@ function setup() {
 function draw() {
   background(255,255,255);  
   drawSprites();
+  
+}
 
-  submit.mousePressed(() => {
+submit.mousePressed(() => {
   question_1_vote();
   question_2_vote();
   question_3_vote();
@@ -99,37 +101,36 @@ function draw() {
   console.log(question_1.value());
   
 })
-}
 
   function question_1_vote() {
-    database.ref('/Question1').update({
+    database.ref('/survey/Question1').update({
       vote: question_1.value()
     })
   }
   function question_2_vote() {
-    database.ref('/Question2').update({
+    database.ref('/survey/Question2').update({
       vote: question_2.value()
     })
   }
   function question_3_vote() {
-    database.ref('/Question3').update({
+    database.ref('/survey/Question3').update({
       vote: question_3.value()
     })
   }
   function question_4_vote() {
-    database.ref('/Question4').update({
+    database.ref('/survey/Question4').update({
       vote: question_4.value()
     })
   }
 
 function updateInputEmail() {
-  database.ref('/').update({
+  database.ref('/survey/').update({
     voterEmail: email_input.value()
   })
 }
 
 function updateVoterCount() {
-  database.ref('/').update({
+  database.ref('/survey/').update({
     voterCount: count
   })
 }

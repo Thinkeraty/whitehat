@@ -6,11 +6,15 @@ var question1, question2, question3, question4;
 var database;
 var form_input, submit, title, greeting;
 var question_1_value, question_2_value, question_3_value, question_4_value
-var voterEmailValue;
+var voterEmailList = [];
+var vote1 = [];
+var vote2 = [];
+var vote3 = [];
+var vote4 = [];
 
 function setup() {
   createCanvas(800,400);
-  //createSprite(400, 200, 800, 400);
+ // createSprite(submit.x, submit.y, 10, 10);
 
   database = firebase.database();
 
@@ -72,7 +76,6 @@ function setup() {
   email_input  = createInput();
   email_input.style('width', '250px')
   email_input.position(displayWidth/2 - 130, displayHeight/2 + 450)
-  voterEmailValue = email_input.value();
 
   submit = createButton("Submit Response");
   submit.position(displayWidth/2 - 70, displayHeight/2 + 520);
@@ -82,10 +85,18 @@ function setup() {
 function draw() {
   background(255,255,255);  
   drawSprites();
-  
-}
 
-submit.mousePressed(() => {
+ // console.log(mouseX);
+
+  submit.mousePressed(() => {
+
+  vote1.push(question_1.value());
+  vote2.push(question_2.value());
+  vote3.push(question_3.value());
+  vote4.push(question_4.value());
+
+  voterEmailList.push(email_input.value());
+
   question_1_vote();
   question_2_vote();
   question_3_vote();
@@ -98,34 +109,38 @@ submit.mousePressed(() => {
 
 
 
-  console.log(question_1.value());
+  console.log(vote1);
   
 })
+  
+}
+
+
 
   function question_1_vote() {
     database.ref('/survey/Question1').update({
-      vote: question_1.value()
+      vote: vote1
     })
   }
   function question_2_vote() {
     database.ref('/survey/Question2').update({
-      vote: question_2.value()
+      vote: vote2
     })
   }
   function question_3_vote() {
     database.ref('/survey/Question3').update({
-      vote: question_3.value()
+      vote: vote3
     })
   }
   function question_4_vote() {
     database.ref('/survey/Question4').update({
-      vote: question_4.value()
+      vote: vote4
     })
   }
 
 function updateInputEmail() {
   database.ref('/survey/').update({
-    voterEmail: email_input.value()
+    voterEmail: voterEmailList
   })
 }
 

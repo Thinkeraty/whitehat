@@ -1,7 +1,7 @@
 //Coded By Samyak Jain With <3 For WhiteHat Jr.
 
 function preload() {
-  bg_img = loadImage("../sprites/bg.png");
+  bg_img = loadImage("https://thinkeraty.github.io/whitehat/p5-car-race/sprites/bg.png");
 }
 
 

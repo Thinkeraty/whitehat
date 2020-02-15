@@ -92,13 +92,13 @@ function draw() {
 function switchImg() {
   var random_animation = Math.round(random(1,4));
     switch(random_animation) {
-      case 1: enemy.animation = loadImage("../sprites/car_blue.png");
+      case 1: enemy.animation = loadImage("https://thinkeraty.github.io/whitehat/p5-car-race/sprites/car_blue.png");
               break;
-      case 2: enemy.animation = loadImage("../sprites/car_red.png");
+      case 2: enemy.animation = loadImage("https://thinkeraty.github.io/whitehat/p5-car-race/sprites/car_red.png");
               break;
-      case 3: enemy.animation = loadImage("../sprites/car_yellow.png");
+      case 3: enemy.animation = loadImage("https://thinkeraty.github.io/whitehat/p5-car-race/sprites/car_yellow.png");
               break;
-      case 4: enemy.animation = loadImage("../sprites/car_green.png");
+      case 4: enemy.animation = loadImage("https://thinkeraty.github.io/whitehat/p5-car-race/sprites/car_green.png");
               break;
       default: break;
     }

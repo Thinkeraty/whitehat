@@ -29,10 +29,10 @@ class Game {
       form.display();
     }
 
-    player1 = createSprite(100,200);
-    player2 = createSprite(300,200);
-    player3 = createSprite(500,200);
-    player4 = createSprite(700,200);
+    player1 = createSprite(100,200, 20, 20);
+    player2 = createSprite(300,200, 20, 20);
+    player3 = createSprite(100,200, 20, 20);
+    player4 = createSprite(300,200, 20, 20);
     players = [player1, player2, player3, player4];
   }
 
@@ -53,7 +53,7 @@ class Game {
       var index = 0;
 
       //x and y position of the players
-      var x;
+      var x = 0;
       var y = 175;
 
       for(var plr in allPlayers){
@@ -61,7 +61,7 @@ class Game {
         index = index + 1 ;
 
         //position the players a little away from each other in y direction
-        y = y + 200;
+        y = y + 100;
         //use data form the database to display the players in y direction
         x = displayHeight - allPlayers[plr].distance;
         players[index-1].x = x;
@@ -74,7 +74,7 @@ class Game {
           fill("red");
           ellipse(x,y,60,60);
           players[index - 1].shapeColor = "red";
-          camera.position.x = displayWidth/2;
+          camera.position.x = displayWidth/2 + 600;
           camera.position.y = players[index-1].y;
         }
        
@@ -84,8 +84,8 @@ class Game {
 
     }
 
-    if(keyIsDown(UP_ARROW) && player.index !== null){
-      player.distance +=10
+    if(keyIsDown(32) && player.index !== null){
+      player.distance -= 10
       player.update();
     }
 

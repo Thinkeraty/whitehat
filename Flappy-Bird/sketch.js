@@ -26,6 +26,7 @@ function draw() {
 
     if (pipes[i].hits(bird)) {
       console.log('HIT');
+      life = life - 1;
     }
 
     if (pipes[i].offscreen()) {
@@ -42,6 +43,10 @@ function draw() {
 
   imageMode(CENTER);
   image(img, bird.x, bird.y, 100, 100);
+
+  textSize(18);
+  fill("#000000");
+  text("Lives: "+life, 20, 30);
 
 
 }

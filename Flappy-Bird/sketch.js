@@ -3,12 +3,17 @@
 var bird;
 var pipes = [];
 
-var life = 10;
+var score = 0;
+var PLAY = 1;
+var END = 0;
+var gameState = PLAY;
 
 function preload() {
   img = loadImage("./bird.png");
 
   bg = loadImage("./bg.png");
+
+  restart = loadImage("./restart.png");
 }
 
 function setup() {
@@ -20,13 +25,14 @@ function setup() {
 function draw() {
   background(bg);
 
-  for (var i = pipes.length - 1; i >= 0; i--) {
+  if(gameState == PLAY) {
+    for (var i = pipes.length - 1; i >= 0; i--) {
     pipes[i].show();
     pipes[i].update();
 
     if (pipes[i].hits(bird)) {
       console.log('HIT');
-      life = life - 1;
+      score = score - 3;
     }
 
     if (pipes[i].offscreen()) {
@@ -41,12 +47,43 @@ function draw() {
     pipes.push(new Pipe());
   }
 
+  score = score + Math.round(getFrameRate()/60);
+
   imageMode(CENTER);
   image(img, bird.x, bird.y, 100, 100);
 
   textSize(18);
   fill("#000000");
-  text("Lives: "+life, 20, 30);
+  text("Score: "+ score, 20, 30);
+  
+  if(score < 0) {
+    gameState = END;
+  }
+  } else if(gameState == END) {
+    textSize(30);
+    fill("#000000");
+    text("You Lose.", 260, 200)
+    text("Start Again: ", 250, 250);
+
+    lost = createSprite(320, 290, 60, 60);
+    lost.addImage(restart);
+    lost.scale = 0.05;
+    drawSprites();
+
+    if(mousePressedOver(lost)) {
+      gameState = PLAY;
+    }
+  }
+
+    imageMode(CENTER);
+    image(img, bird.x, bird.y, 100, 100);
+
+    textSize(18);
+    fill("#000000");
+    text("Score: "+ score, 20, 30);
+  
+
+  
 
 
 }

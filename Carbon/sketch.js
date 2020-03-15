@@ -1,13 +1,13 @@
 function preload() {
-  bulb_glow = loadImage("./assets/bulb-glow.png");
-  bulb_unglow = loadImage("./assets/bulb.png");
+  bulb_glow = loadImage("https://thinkeraty.github.io/whitehat/Carbon/assets/bulb-glow.png");
+  bulb_unglow = loadImage("https://thinkeraty.github.io/whitehat/Carbon/assets/bulb.png");
 
  
 }
 function setup() {
   createCanvas(800,400);
 
-   windmill_move = loadGif('./assets/windmill-move.gif');
+   windmill_move = loadGif('https://thinkeraty.github.io/whitehat/Carbon/assets/windmill-move.gif');
 
   //alert("Hi, Do You Pledge To Save Energy And Ultimately Save Your Home From Energy Crisis, Leading To Total Annhilation?");;
 
@@ -36,7 +36,7 @@ function draw() {
 
   windmill.x = mouseX;
 
-  image(windmill_move);
+  image(windmill_move, 100, 100);
 
   stroke("grey");
   strokeWeight(5);

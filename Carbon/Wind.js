@@ -4,10 +4,11 @@ class Wind {
         this.y = y;
         this.width = width;
         this.height = height;
+
+        this.animation = loadImage("./assets/wind.png");
     }
     display() {
         fill("#000000");
-        this.animation = null;
-        rect(this.x, this.y, this.width, this.height);
+        image(this.animation, this.x, this.y, this.width, this.height);
     }
 }

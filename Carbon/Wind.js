@@ -5,10 +5,17 @@ class Wind {
         this.width = width;
         this.height = height;
 
-        this.animation = loadImage("./assets/wind.png");
+        this.image = loadImage("./assets/wind.png");
+        this.body = createSprite(this.x, this.y, this.width, this.height);
     }
     display() {
-        fill("#000000");
-        image(this.animation, this.x, this.y, this.width, this.height);
+        image(this.image, this.x, this.y, this.width, this.height);
+        this.body.visible = false;
+        this.body.x = this.x + 25;
+        this.body.y = this.y + 15;
+        this.body.width = this.width;
+        this.body.height = this.height;
+        
+        drawSprites();
     }
 }

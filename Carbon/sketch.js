@@ -6,23 +6,20 @@ function preload() {
 }
 function setup() {
   createCanvas(800,400);
-
-   windmill_move = loadGif('https://thinkeraty.github.io/whitehat/Carbon/assets/windmill-move.gif');
-
-  //alert("Hi, Do You Pledge To Save Energy And Ultimately Save Your Home From Energy Crisis, Leading To Total Annhilation?");;
+  confirm("Hi, Do You Pledge To Save Energy And Ultimately Save Your Home From Energy Crisis, Leading To Total Annhilation?");;
 
   bulb = createSprite(50, 330, 50, 50);
   bulb.addImage("unglowing", bulb_unglow);
   bulb.addImage("glowing", bulb_glow);
   bulb.scale = 0.15;
 
-  windmill = new Windmill(mouseX, 50, 120, 195);
+  windmill = new Windmill(200, 300, -40, -40);
 
   //cloud = new Cloud(350, 30, 50, 50);
 
   wind_y = Math.round(random(20, 310));
 
-  wind = new Wind(800, 30, 50, 50);
+  wind = new Wind(800, 30, 60, 50);
 
 
   col = false;
@@ -31,18 +28,19 @@ function setup() {
 }
 
 function draw() {
-  background(0);  
-  drawSprites();
+  background("#7FAFE3");  
+
+  
 
   windmill.x = mouseX;
 
-  image(windmill_move, 100, 100);
-
-  stroke("grey");
+  stroke("#ffffff");
   strokeWeight(5);
-  line(windmill.x - 43, windmill.y + 85, windmill.x - 43, 370);
+  line(windmill.x + 176.5, windmill.y, windmill.x  + 176.5, 370);
 
-  windmill.display();
+  windmill.y = 240;
+
+  windmill.x = mouseX + 350;
 
   //cloud.display();
 
@@ -56,38 +54,34 @@ function draw() {
 
   console.log(windmill.x);
 
-  bulb.x = windmill.x + 80;
+  bulb.x = windmill.x - 20;
+
+  windmill.display();
+
+  console.log(wind.body.isTouching(windmill.fake));
+
+  collision();
+
+  drawSprites();
 
 
-  
   wind.display();
 
-  changeSize();
-  collision(windmill, wind);
-
 }
 
 
-function collision(movingRect, fixedRect) {
-  if(movingRect.x - fixedRect.x < fixedRect.width / 2 + movingRect.width / 2 &&
-    fixedRect.x - movingRect.x < fixedRect.width / 2 + movingRect.width / 2 &&
-    movingRect.y - fixedRect.y < fixedRect.height / 2 + movingRect.height / 2 &&
-    fixedRect.y - movingRect.y < fixedRect.height / 2 + movingRect.height / 2) {
+function collision() {
+  if(windmill.fake.isTouching(wind.body)) {
 
-      bulb.changeImage("glowing");
+      bulb.changeImage("glowing", bulb_glow);
       bulb.scale = 0.25;
 
-} else {
-      bulb.changeImage("unglowing");
-      bulb.scale = 0.15;
-}
-}
+      windmill.gif.position(windmill.fake.x - 70, windmill.fake.y - 70);
 
-function changeSize() {
-  if(keyCode == 68) {
-    windmill.y = 50;
-    console.log("hi");
-  }else {
-    windmill.y = 150;
-  }
+} else {
+      bulb.changeImage("unglowing", bulb_unglow);
+      bulb.scale = 0.15;
+
+      windmill.gif.position(-1000, -1000);
+}
 }

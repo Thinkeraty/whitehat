@@ -1,12 +1,14 @@
+
 function preload() {
   bulb_glow = loadImage("https://thinkeraty.github.io/whitehat/Carbon/assets/bulb-glow.png");
   bulb_unglow = loadImage("https://thinkeraty.github.io/whitehat/Carbon/assets/bulb.png");
+
+  bg_img = loadImage("./assets/wind_bg.jpg");
 
  
 }
 function setup() {
   createCanvas(800,400);
-  confirm("Hi, Do You Pledge To Save Energy And Ultimately Save Your Home From Energy Crisis, Leading To Total Annhilation?");;
 
   bulb = createSprite(50, 330, 50, 50);
   bulb.addImage("unglowing", bulb_unglow);
@@ -28,7 +30,7 @@ function setup() {
 }
 
 function draw() {
-  background("#7FAFE3");  
+  background(bg_img);  
 
   
 

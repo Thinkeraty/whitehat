@@ -3,23 +3,39 @@
 
     <style>
 
+        @import url('https://fonts.googleapis.com/css?family=Raleway:200,100,400');
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .header {
+            margin-top: -5%;
+        }
+
         .bg {
-            margin-top: -20%;
-            margin-bottom: -40%;
+            margin-top: -10%;
+            margin-bottom: -30%;
             margin-right: 0%;
             margin-left: 0%;
             opacity: 0.25;
-            height: 200%;
+            height: 100%;
             width: 100%;
         }
 
-        body {
-            overflow: hidden;
-            color: #000000;
-            font-weight: 900;
+        .bg2 {
+            margin-left: 0%;
+            margin-bottom: -25%;
+            margin-top: 5.75%;
+            opacity: 0.25;
         }
+
     </style>
-    <h1 align="center" class="h1" style="color: #000000; margin-top: 10%;">Green Energy</h1>
+    <div class="header">
+        <h1 align="center" style="color: #000000; margin-top: 10%;">Green Energy</h1>
+    </div>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +43,7 @@
 </head>
 <body>
     
-    <img src="./assets/bg.png" class="bg">
+    <img src="./assets/bg.png" class="bg" width="1500px" height="500px">
     <h2>&nbsp;&nbsp;Instructions:</h2>
     <h3>&nbsp;&nbsp;&nbsp;Level 1:</h3>
     <ul>
@@ -37,6 +53,42 @@
         <br>
         <li>You can control the size of the windmill by pressing the "D" key.</li>
         <br>
+        <li>Generation of wind energy will fetch you points. Try your best to gain as many points as possible</li>
+        <br>
+        <li>After reaching a certain score, you will get to choose it's utilisation</li>
     </ul>
+    <img src="./assets/bg2.jpg" class="bg2" height="600px" width="1250px">
+    <h3 style="margin-top: -20%; font-weight: bold; color: #000000;">&nbsp;&nbsp;&nbsp;Level 1:</h3>
+    <ul>
+        <li>You have to generate energy from the solar panel by passing it through the clouds and placing it in sunlight</li>
+        <br>
+        <li>The solar panel will follow the mouse</li>
+        <br>
+        <li>Generation of solar energy will fetch you points. Try your best to gain as many points as possible</li>
+        <br>
+        <li>After reaching a certain score, you will get to choose it's utilisation</li>
+    </ul>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button id="play" onclick="game();"  style="margin-left: 45%; height: 50px; width: 120px; background-color: #1abc9c; font-size: 1.25rem;">Play Game</button>
+
+    <script>
+        if(confirm("Hi, Do You Pledge To Save Energy And Ultimately Save Your Home From Energy Crisis, Leading To Total Annhilation?") == false) {
+            window.location.href = "https://www.saveonenergy.com/learning-center/energy-saving-tips/how-does-saving-energy-help-the-environment/";
+        }
+
+        function game() {
+            window.location.href = "https://thinkeraty.github.io/whitehat/Carbon/game.html";
+            console.log("hi");
+            //location.reload();
+        }
+
+
+    </script>
 </body>
 </html>

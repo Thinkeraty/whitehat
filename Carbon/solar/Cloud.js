@@ -1,11 +1,11 @@
-class Wind {
+class Cloud {
     constructor(x, y, width, height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
 
-        this.image = loadImage("./assets/wind.png");
+        this.image = loadImage("../assets/wind.png");
         this.body = createSprite(this.x, this.y, this.width, this.height);
     }
     display() {

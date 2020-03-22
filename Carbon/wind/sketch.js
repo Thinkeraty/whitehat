@@ -3,7 +3,7 @@ function preload() {
   bulb_glow = loadImage("https://thinkeraty.github.io/whitehat/Carbon/assets/bulb-glow.png");
   bulb_unglow = loadImage("https://thinkeraty.github.io/whitehat/Carbon/assets/bulb.png");
 
-  bg_img = loadImage("./assets/wind_bg.jpg");
+  bg_img = loadImage("../assets/wind_bg.jpg");
 
  
 }

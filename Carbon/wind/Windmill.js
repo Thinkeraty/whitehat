@@ -6,8 +6,8 @@ class Windmill {
         this.height = height;
 
         
-        this.image = loadImage("./assets/windmill-stop.jpg");
-        this.gif  = createImg("./assets/windmill-move.gif");
+        this.image = loadImage("../assets/windmill-stop.jpg");
+        this.gif  = createImg("../assets/windmill-move.gif");
         
 
         this.fake = createSprite(this.x, this.y, this.width, this.height);

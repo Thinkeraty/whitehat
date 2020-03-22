@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
+    <script src="p5.js"></script>
+    <script src="p5.dom.min.js"></script>
+    <script src="p5.sound.min.js"></script>
+    <script src="p5.play.js"></script>
+
     <style>
 
         @import url('https://fonts.googleapis.com/css?family=Raleway:200,100,400');
@@ -36,13 +41,18 @@
     <div class="header">
         <h1 align="center" style="color: #000000; margin-top: 10%;">Green Energy</h1>
     </div>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://unpkg.com/aos@next/dist/aos.css'>
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carbon</title>
 </head>
 <body>
-    
+    <div class="wind" data-aos="fade-up">
     <img src="./assets/bg.png" class="bg" width="1500px" height="500px">
     <h2>&nbsp;&nbsp;Instructions:</h2>
     <h3>&nbsp;&nbsp;&nbsp;Level 1:</h3>
@@ -57,6 +67,8 @@
         <br>
         <li>After reaching a certain score, you will get to choose it's utilisation</li>
     </ul>
+</div>
+    <div class="solar" data-aos="fade-up">
     <img src="./assets/bg2.jpg" class="bg2" height="600px" width="1250px">
     <h3 style="margin-top: -20%; font-weight: bold; color: #000000;">&nbsp;&nbsp;&nbsp;Level 1:</h3>
     <ul>
@@ -75,20 +87,50 @@
     <br>
     <br>
     <br>
-    <button id="play" onclick="game();"  style="margin-left: 45%; height: 50px; width: 120px; background-color: #1abc9c; font-size: 1.25rem;">Play Game</button>
-
+</div>
     <script>
         if(confirm("Hi, Do You Pledge To Save Energy And Ultimately Save Your Home From Energy Crisis, Leading To Total Annhilation?") == false) {
             window.location.href = "https://www.saveonenergy.com/learning-center/energy-saving-tips/how-does-saving-energy-help-the-environment/";
         }
 
-        function game() {
-            window.location.href = "https://thinkeraty.github.io/whitehat/Carbon/game.html";
-            console.log("hi");
-            //location.reload();
+    </script>
+
+    <script src='https://unpkg.com/aos@next/dist/aos.js'></script> 
+    <script>
+        AOS.init({
+        offset: 120, // offset (in px) from the original trigger point
+        delay: 10, // values from 0 to 3000, with step 50ms
+        duration: 1000 // values from 0 to 3000, with step 50ms
+    });
+    
+     if(window.innerWidth < 400) {
+            AOS.init({
+            offset: 5000, // offset (in px) from the original trigger point
+            delay: 200, // values from 0 to 3000, with step 50ms
+            duration: 2500 // values from 0 to 3000, with step 50ms
+        });
+    }
+    </script>
+
+    <script>
+        function setup() {
+            createCanvas(displayWidth, 200);
+            btn = createSprite(displayWidth/2 - 20, 20, 100, 50);
+            btn.shapeColor = "#28a745";
         }
 
+        function draw() {
+            drawSprites();
 
+            fill("#ffffff");
+            textSize(18);
+            text("Play Game", btn.x - 45, btn.y + 7);
+
+            if(mousePressedOver(btn)) {
+                window.location.href = "./wind/game.html";
+            }
+        }
+        
     </script>
 </body>
 </html>

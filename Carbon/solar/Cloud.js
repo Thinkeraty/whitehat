@@ -10,7 +10,7 @@ class Cloud {
         //this.body.debug = true;
 
         this.body.setCollider("rectangle", 0, 0, 180, 140);
-        this.body.debug = true;
+        //this.body.debug = true;
         this.body.x = this.x + 50;
         this.body.y = this.y + 50;
         this.body.width = this.width + 20;

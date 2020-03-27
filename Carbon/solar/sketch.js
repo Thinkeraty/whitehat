@@ -1,7 +1,11 @@
+var cloud1_shadow_x;
+var cloud2_shadow_x;
+
+var touch = 0;
 
 function preload() {
-  bulb_glow = loadImage("https://thinkeraty.github.io/whitehat/Carbon/assets/bulb-glow.png");
-  bulb_unglow = loadImage("https://thinkeraty.github.io/whitehat/Carbon/assets/bulb.png");
+  bulb_glow = loadImage("../assets/bulb-glow.png");
+  bulb_unglow = loadImage("../assets/bulb.png");
 
   bg_img = loadImage("../assets/game_bg.png");
 
@@ -9,6 +13,10 @@ function preload() {
 
   shadow = loadImage("../assets/shadow.png");
 }
+
+
+
+
 function setup() {
   createCanvas(800, 500);
 
@@ -29,7 +37,7 @@ function setup() {
   cloud1_speed = Math.round(random(5, 8));
   cloud2_speed = Math.round(random(-8, -5));
 
-    cloud1_shadow_x = cloud1.body.x;
+  cloud1_shadow_x = cloud1.body.x;
   cloud2_shadow_x = cloud2.body.x;
 
   cloud1_shadow_y = cloud1.body.y + 200;
@@ -38,15 +46,15 @@ function setup() {
 }
 
 function draw() {
-  background(bg_img);  
+  background(bg_img);
 
-  solarPanel.x = mouseX;
+  // solarPanel.x = mouseX;
 
   stroke("#ffffff");
   strokeWeight(5);
-  line(solarPanel.x + 176.5, solarPanel.y + 30, solarPanel.x  + 176.5, 470);
+  line(solarPanel.x - 176.5, solarPanel.y + 30, solarPanel.x - 176.5, 470);
 
-  console.log(mouseY);
+  // console.log(mouseY);
 
   solarPanel.y = 240;
 
@@ -60,7 +68,7 @@ function draw() {
 
   //collision();
 
-  
+
 
   cloud1.body.velocityX = cloud1_speed;
   cloud2.body.velocityX = cloud2_speed;
@@ -81,7 +89,7 @@ function draw() {
     cloud2_speed = Math.round(random(5, 8));
   }
 
-  console.log(cloud1.x);
+  // console.log(cloud1.body.x, "x value");
 
   cloud1_shadow_x = cloud1.body.x;
   cloud2_shadow_x = cloud2.body.x;
@@ -97,32 +105,50 @@ function draw() {
 
   tint(255, 125);
   image(shadow, cloud1_shadow_x - 80, cloud1_shadow_y - 160, 200, 340);
-  //tint(255, 125);
-  //image(shadow, cloud1_shadow_x - 80, cloud1_shadow_y - 160, 200, 340);
-  
 
- // image(shadow, cloud2_shadow_x - 80, cloud2_shadow_y - 130, 200, 270);
   tint(255, 125);
-  image(shadow, cloud2_shadow_x - 80, cloud2_shadow_y - 130, 200, 270);
+  image(shadow, cloud2_shadow_x - 80, cloud2_shadow_y - 130, 200, 340);
+
+  collision()
+
+  console.log(Math.round(touch));
+
+  textSize(18);
+  text("Generation : " + Math.round(Math.round(touch)/100)+ " Kwh", 10, 30)
+
+  if(Math.round(Math.round(touch)/100) == 5) {
+    alert('Great Work! \nYou have successfully generated ' + (Math.round(Math.round(touch)/100) - 1) + ' Kwh of Solar Energy and reduced ' + ((Math.round(Math.round(touch)/100) - 1) * 150)/24 + " gm of Carbon Dioxide Emmisions! \nYou have successfully finished this game!")
+    touch = 0;
+    window.location.href = "../end.html";
+} else {
+  console.log("hi");
+}
+
+
 }
 
 
 function collision() {
-  if(solarPanel.x - cloud1_shadow_x < 200 / 2 + solarPanel.width / 2 &&
-    cloud1_shadow_x - solarPanel.x < 200 / 2 + solarPanel.width / 2) {
+  if( cloud1_shadow_x >= solarPanel.x - 330 && cloud1_shadow_x <= solarPanel.x ||
+      cloud2_shadow_x >= solarPanel.x - 330 && cloud2_shadow_x <= solarPanel.x
+  ) {
 
-      bulb.changeImage("glowing", bulb_glow);
-      bulb.scale = 0.25;
+    bulb.changeImage("unglowing", bulb_unglow);
+    bulb.scale = 0.15;
 
-      solarPanel.animation = solarPanel.image_glow;
-
-      console.log("hi");
-
-} else {
-      bulb.changeImage("unglowing", bulb_unglow);
-      bulb.scale = 0.15;
-
-      solarPanel.animation = solarPanel.image_unglow;
+    solarPanel.animation = solarPanel.image_unglow;
 
 }
+
+else {
+
+  bulb.changeImage("glowing", bulb_glow);
+  bulb.scale = 0.25;
+
+  solarPanel.animation = solarPanel.image_glow;
+
+  touch = touch + 0.5;
+
+  }
 }
+

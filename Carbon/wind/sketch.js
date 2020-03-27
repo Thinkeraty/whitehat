@@ -23,9 +23,7 @@ function setup() {
 
   wind = new Wind(800, 30, 60, 50);
 
-
-  col = false;
-
+  touch = 0;
 
 }
 
@@ -64,6 +62,19 @@ function draw() {
 
   collision();
 
+  console.log(Math.round(touch));
+
+  textSize(18);
+  text("Generation : " + Math.round(Math.round(touch)/100)+ " Kwh", 10, 30)
+
+  if(Math.round(Math.round(touch)/100) == 4) {
+    alert('Great Work! \nYou have successfully generated ' + (Math.round(Math.round(touch)/100) - 1) + ' Kwh of Wind Energy and reduced ' + ((Math.round(Math.round(touch)/100) - 1) * 4) + " gm of Carbon Dioxide Emmisions! \nLet's move on to another level!!")
+    touch = 0;
+    window.location.href = "../solar/index.html";
+} else {
+  console.log("almost there");
+}
+
   drawSprites();
 
 
@@ -79,6 +90,8 @@ function collision() {
       bulb.scale = 0.25;
 
       windmill.gif.position(windmill.fake.x - 70, windmill.fake.y - 70);
+
+      touch = touch + 0.3;
 
 } else {
       bulb.changeImage("unglowing", bulb_unglow);

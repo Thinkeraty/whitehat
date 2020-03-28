@@ -67,6 +67,9 @@ function draw() {
   textSize(18);
   text("Generation : " + Math.round(Math.round(touch)/100)+ " Kwh", 10, 30)
 
+  textSize(18);
+  text("D: Height", 700, 30)
+
   if(Math.round(Math.round(touch)/100) == 4) {
     alert('Great Work! \nYou have successfully generated ' + (Math.round(Math.round(touch)/100) - 1) + ' Kwh of Wind Energy and reduced ' + ((Math.round(Math.round(touch)/100) - 1) * 4) + " gm of Carbon Dioxide Emmisions! \nLet's move on to another level!!")
     touch = 0;

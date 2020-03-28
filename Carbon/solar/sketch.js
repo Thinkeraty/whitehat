@@ -116,6 +116,9 @@ function draw() {
   textSize(18);
   text("Generation : " + Math.round(Math.round(touch)/100)+ " Kwh", 10, 30)
 
+  textSize(18);
+  text("D: Height", 700, 30)
+
   if(Math.round(Math.round(touch)/100) == 5) {
     alert('Great Work! \nYou have successfully generated ' + (Math.round(Math.round(touch)/100) - 1) + ' Kwh of Solar Energy and reduced ' + ((Math.round(Math.round(touch)/100) - 1) * 150)/24 + " gm of Carbon Dioxide Emmisions! \nYou have successfully finished this game!")
     touch = 0;

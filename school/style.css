@@ -1,0 +1,66 @@
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic,700,700italic);
+body,
+html {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Arimo', sans-serif;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+  }
+  
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #EF8354;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  .menu {
+      position: absolute;
+      margin-top: -10%;
+  }
+  
+  #main {
+    transition: margin-left .5s;
+    padding: 16px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  .abt {
+      opacity: 0.3;
+  }

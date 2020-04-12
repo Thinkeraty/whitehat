@@ -1,0 +1,49 @@
+h1 {
+    color: white;
+}
+
+/* * {
+    border: solid;
+} */
+
+.header{
+    background-color: cadetblue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    width: 110%;
+    float: left;
+    margin-left: -5%;
+    padding-top: 50px;
+    margin-top: -5%;
+}
+
+.menu {
+    margin-right: 10%;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.site-description{
+    display: flex;
+    flex-direction: column;
+    justify-content: first baseline;
+}
+
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.footer{
+    display: flex;
+    justify-content: flex-end;
+}
+
+p,h2{
+    text-align: center;
+}
